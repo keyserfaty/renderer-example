@@ -1,0 +1,115 @@
+@keyframes input-focus--box {
+  0% {
+    padding: 0 16px;
+  }
+
+  100% {
+    padding: 0 24px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@keyframes input-focus--icon {
+  0% {
+    right: 0;
+  }
+
+  100% {
+    right: 8px;
+  }
+}
+
+@keyframes input-keypress--box {
+  0% {
+    width: 720px;
+    border-radius: 4px;
+  }
+
+  100% {
+    width: 23px;
+    border-radius: 27px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@keyframes input-loading--box {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+@keyframes scale-out {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+// Box
+.animate-input-focus--box {
+  animation: input-focus--box 0.3s forwards linear;
+}
+
+.animate-input-blur--box {
+  animation: input-focus--box 0.3s forwards reverse linear;
+}
+
+.animate-input-keypress--box {
+  animation:
+    input-keypress--box 0.5s forwards,
+    input-loading--box 1s infinite alternate ease-in-out;
+}
+
+.animate-input-loading-end {
+  animation:
+    scale-out 0.5s forwards,
+    fadein 0.2s forwards reverse linear;
+}
+
+// Icon
+.animate-input-focus--icon {
+  animation:
+    input-focus--icon 0.3s forwards linear;
+}
+
+.animate-input-blur--icon {
+  animation:
+    input-focus--icon 0.3s forwards reverse linear;
+}
+
+// Loading icon
+.animate-input-keypress--loading {
+  animation:
+    fadein 0.5s forwards linear,
+    rotate 1.3s infinite linear 0.5s;
+}
+
+.animate-input-keypress--loading-end {
+  animation: rotate 2s forwards ease-out;
+}
