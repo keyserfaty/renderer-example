@@ -1,5 +1,5 @@
 
-# vtrine-2
+# renderer-example 
 
 ## Development
 
