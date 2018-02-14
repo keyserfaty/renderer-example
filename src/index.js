@@ -2,23 +2,44 @@ const h = require('../lib/h')
 const mount = require('../lib/mount')
 const update = require('../lib/update')
 
-const app =
-  h('div', { className: 'parent' },
+let state = {
+  value: ''
+}
+
+const app = (state) =>
+  h('span', { className: 'parent' },
     h('div', { className: 'child' },
-      h('div', { className: 'grand-child', style: 'background: red'}, 'grandchild')
+      h('input', { className: 'grand-child', onkeydown: function (e) { state.value = e.target.value } }),
+      h('div', { className: 'text' }, state.value)
     )
   )
 
-const app2 =
+const app2 = (state) =>
   h('span', { className: 'parent' },
     h('div', { className: 'child' },
-      h('div', { className: 'grand-child', style: 'background: blue' }, 'grandchild 2')
+      h('input', { className: 'grand-child', onkeydown: function (e) { state.value = e.target.value } }),
+      h('div', { className: 'text' }, state.value)
     )
   )
 
 const rootNode = document.querySelector('#root')
-mount(app, rootNode)
+const oldState = {
+  ...state
+}
+
+mount(app(state), rootNode)
+
+/**
+ * Esto así como está debería funcionar pq le estoy pasando diferentes props
+ * por lo que debería mostrarlas
+ *
+ * Otra cosa que me falta es la referencia al dom node. qué hago con ese return?
+ *
+ * El paso siguiente es que un evento de un component dispare un cambio en el state
+ * igual que en la función setState en React
+ */
 
 setTimeout(function () {
-  update(app, app2)
+  console.log(oldState, state)
+  update(app(oldState), app2(state))
 }, 2000)
